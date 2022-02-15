@@ -68,41 +68,34 @@
 			
 		</div>
 	</nav>
-	
-	<div class = "container bootstrap snippet">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="portlet portlet-default">
-					<div class="portlet-heading">
-						<div class="portlet-title">
-							<h4><i class="fa fa-circle text-green"></i>실시간채팅창</h4>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div id="chat" class="panel-collapse collapse in">
-						<div id = "chatlist" class="portlet-body chat-widget" style="overflow-y:auto; width: auto; height: 600px;">
-						</div>
-						<div class="portlet-footer">
-							<div class="row">
-								<div class="form-group col-xs-4">
-									<input stype="height: 40px;" type="text" id ="chatName" class="form-control" placeholder="이름" maxlength="8">								
-								</div>
-							</div>	
-							<div class="row" style="height:90px;">
-								<div class="form-group col-xs-10">
-									<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요.", maxlength="100"></textarea>
-								</div>
-								<div class="form-group col-xs-2">
-									<button type="button" class="btn btn-default pull-right" onclick="submitfunction();">전송</button>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
+	<div class="container">
+		<form method="post" action="UserLoginServlet">
+			<table class="table table-boardered table-hover" style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th colspan="2"><h4>로그인양식</h4></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="width:110px;"><h5>아이디</h5></td>
+						<td><input type="text" name="userID" id = "userID" maxlength="20" placeholder="아이디를 입력하세요"></td>
+					</tr>
+					<tr>
+						<td style="width:110px;"><h5>비밀번호</h5></td>
+						<td><input type="password" name="userPassword" id = "userPassword" maxlength="20" placeholder="비밀번호를 입력하세요"></td>
+					</tr>
+						<tr>
+						<td style="text-align: left;" colspan="2"><input class="btn btn-parimary pull-right" type="submit" value="로그인">
+					</tr>
+				</tbody>
+			
+			
+			</table>
+		
+		
+		
+		</form>
 	</div>
 	
 	

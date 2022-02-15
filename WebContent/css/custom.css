@@ -1,0 +1,62 @@
+@import url(http://fonts.googleapis.com/earlyaccess/namumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+*{
+	font-family: 'Nanum Gothic';
+}
+h5{
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+}
+h4 {
+	font-family: 'Noto Sans KR'
+}
+h3 {
+	font-family:"Hanna"	
+}
+h2 {
+	font-family:"Hanna"	
+}
+h1 {
+	font-family:"Hanna"	
+}
+/* 테이블 */
+thead th {
+	background-color: #006DCC;
+	color: white;
+	text-align: center
+}
+tr td:first-child,
+tr th:first-chid {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+tr td:last-child{
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;	
+}
+
+/* 파일업로드 */
+.btn-file{
+	position: relative;
+	overflow: hidden;
+}
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block
+	
+	
+	
+}

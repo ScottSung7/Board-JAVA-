@@ -45,7 +45,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="login.jsp">로그인</a></li>
 						<li><a href="join.jsp">회원가입</a></li>
-						<li class="active"><a href="update.jsp">회원정보 수정</a></li>
+						<li class><a href="update.jsp">회원정보 수정</a></li>
 						<li class="active"><a href="profileUpdate.jsp">프로필 수정</a></li>
 					</ul>	
 					</a>
@@ -68,40 +68,36 @@
 			
 		</div>
 	</nav>
-	
-	<div class = "container bootstrap snippet">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="portlet portlet-default">
-					<div class="portlet-heading">
-						<div class="portlet-title">
-							<h4><i class="fa fa-circle text-green"></i>실시간채팅창</h4>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div id="chat" class="panel-collapse collapse in">
-						<div id = "chatlist" class="portlet-body chat-widget" style="overflow-y:auto; width: auto; height: 600px;">
-						</div>
-						<div class="portlet-footer">
-							<div class="row">
-								<div class="form-group col-xs-4">
-									<input stype="height: 40px;" type="text" id ="chatName" class="form-control" placeholder="이름" maxlength="8">								
-								</div>
-							</div>	
-							<div class="row" style="height:90px;">
-								<div class="form-group col-xs-10">
-									<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요.", maxlength="100"></textarea>
-								</div>
-								<div class="form-group col-xs-2">
-									<button type="button" class="btn btn-default pull-right" onclick="submitfunction();">전송</button>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="container">
+		<form method="post" action="./userProfile" enctype="multipart/form-data">
+			<table class="table table-boardered table-hober" style="text-align: center; border: 1-x solid #dddddd">
+				<thead>
+					<tr>
+						<th colspan="3"><h4>프로필 사진 수정 양식</h4>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="width: 110px;"><h5>아이디</h5>
+						<td><input class="form-control" type="text" id="userID" name="userID" maxlength="20" placeholder="아이디를 입력하세요."></td>
+						<td style="width: 110px;"><button class="btn btn-primary" oncilick="registerCheckFunction();" type="button">중복체크</button></td>
+					</tr>
+					<tr>
+						<td style="width: 110px;"><h5>사진 업로드</h5>
+						<td colspan="2">
+							<span class="btn btn-default btn-file">
+								이미지를 업로드하세요.<input type="file" name="userProfile">
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;" colspan="3"><h5 style="color: red;"></h5><input class="btn btn-primary pull-right" type="submit" value="등록"></td>
+					</tr>
+				</tbody>
+			
+			</table>
+		
+		</form>
 	
 	</div>
 	

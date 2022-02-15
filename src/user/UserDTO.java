@@ -5,15 +5,13 @@ public class UserDTO {
 	String userID;
 	String userPassword;
 	String userName;
-	int userAge;
+	String userAge;
 	String userGender;
 	String userEmail;
 	String userProfile;
-	public UserDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public UserDTO(String userID, String userPassword, String userName, int userAge, String userGender,
+
+	
+	public UserDTO(String userID, String userPassword, String userName, String userAge, String userGender,
 			String userEmail, String userProfile) {
 		super();
 		this.userID = userID;
@@ -24,6 +22,7 @@ public class UserDTO {
 		this.userEmail = userEmail;
 		this.userProfile = userProfile;
 	}
+
 	public String getUserID() {
 		return userID;
 	}
@@ -42,18 +41,21 @@ public class UserDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getUserAge() {
-		return userAge;
-	}
-	public void setUserAge(int userAge) {
-		this.userAge = userAge;
-	}
+
 	public String getUserGender() {
 		return userGender;
 	}
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
+	public String getUserAge() {
+		return userAge;
+	}
+
+	public void setUserAge(String userAge) {
+		this.userAge = userAge;
+	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}

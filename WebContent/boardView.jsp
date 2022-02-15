@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="board.BoardDAO" %>
+<%@ page import="board.BoardDTO" %>
+<%@ page import="com.service.BoardService" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +50,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="login.jsp">로그인</a></li>
 						<li><a href="join.jsp">회원가입</a></li>
-						<li class="active"><a href="update.jsp">회원정보 수정</a></li>
-						<li class="active"><a href="profileUpdate.jsp">프로필 수정</a></li>
+						<li><a href="update.jsp">회원정보 수정</a></li>
 					</ul>	
 					</a>
 				</li>			
@@ -64,47 +68,48 @@
 			</ul>
 			<%
 				}
+			BoardService service = new BoardService();			
+			List<BoardDTO> boardList = service.getList();
 			%>
 			
 		</div>
 	</nav>
-	
-	<div class = "container bootstrap snippet">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="portlet portlet-default">
-					<div class="portlet-heading">
-						<div class="portlet-title">
-							<h4><i class="fa fa-circle text-green"></i>실시간채팅창</h4>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div id="chat" class="panel-collapse collapse in">
-						<div id = "chatlist" class="portlet-body chat-widget" style="overflow-y:auto; width: auto; height: 600px;">
-						</div>
-						<div class="portlet-footer">
-							<div class="row">
-								<div class="form-group col-xs-4">
-									<input stype="height: 40px;" type="text" id ="chatName" class="form-control" placeholder="이름" maxlength="8">								
-								</div>
-							</div>	
-							<div class="row" style="height:90px;">
-								<div class="form-group col-xs-10">
-									<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요.", maxlength="100"></textarea>
-								</div>
-								<div class="form-group col-xs-2">
-									<button type="button" class="btn btn-default pull-right" onclick="submitfunction();">전송</button>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
+	<div class="container">
+		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
+			<thead>
+				<tr>
+					<th colspan="5" style=text-align: center;><h4>자유게시판</h4></th>
+				<tr>
+					<th style="background-color: #fafafafa; color: #000000; width:70px; text-align: center;""><h5>번호</h5></th>
+					<th style="background-color: #fafafafa; color: #000000; text-align: center;"><h5>제목</h5></th>
+					<th style="background-color: #fafafafa; color: #000000; text-align: center;"><h5>작성자</h5></th>
+					<th style="background-color: #fafafafa; color: #000000; width:100p; text-align: center;"><h5>작성날짜</h5></th>
+					<th style="background-color: #fafafafa; color: #000000; width:70px; text-align: center;"><h5>조회수</h5></th>				
+				</tr>			
+			</thead>
+			<tbody>
+			<%
+				for(int i = 0; i< boardList.size();i++){
+					BoardDTO board = boardList.get(i);
+				
+			%>
+			
+				<tr>
+					<td><%= board.getBoardID() %></td>
+					<td style="text-align: left;"><a href="boardShow.jsp?boardID=<%= board.getBoardID() %>"><%= board.getBoardTitle() %></a></td>
+					<td><%= board.getUserID() %></td>	
+					<td><%= board.getBoardDate() %></td>
+					<td><%= board.getBoardHit() %></td>		
+				</tr>
+					<%
+				}
+				%>
+				<tr>
+					<td colspan="5"><a href="boardWrite.jsp" class="btn btn-parimary pull-right" type="submit">글쓰기</a>
+				</tr>
+			</tbody>	
+		</table>
 	</div>
-	
 	
 </body>
 </html>
