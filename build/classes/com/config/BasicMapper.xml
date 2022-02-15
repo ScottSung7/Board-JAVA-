@@ -18,6 +18,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values ('hi', NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), #{boardTitle}, 
 	#{boardContent}, sysdate, 0, #{boardFile},#{boardRealFile}, NVL((SELECT MAX(BOARDGROUP)+1 FROM BOARD), 0), 0, 0)
    </insert>
+   	<insert id="reply" parameterType="BoardDTO">
+     insert into board (userID,boardID,boardTitle,boardContent,boardDate,boardHit,boardFile,boadRealFile,boardGroup, BOARDSEQUENCE, boardLevel ) 
+	values ('hi', NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), #{boardTitle}, 
+	#{boardContent}, sysdate, 0, #{boardFile},#{boardRealFile}, #{parent.BOARDGROUP}, #{parent.BOARDSEQUENCE}, #{parent.BOARDLEVEL})
+   </insert>
+   
+     <insert id="replyUpdate" parameterType="BoardDTO">
+    	Update board set boardSequence = boardSequence + 1 where boardGroup = #{BOARDGROUP} and boardSequence > #{BOARDSEQUENCE}
+   </insert>
+   
+   
    <insert id="hit" parameterType="String">
     UPDATE BOARD SET boardHit = boardHit + 1 where boardID = #{boardID}
    </insert>
