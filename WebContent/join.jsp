@@ -82,7 +82,7 @@
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>비밀번호</h5>
-						<td colspan="2"><input onkeyup="passwordCheckFunction();" class="form-control" id="userPassword1" type="password"  name="userPassword1" maxlength="20" placeholder="비밀번호를 입력하세요."></td>
+						<td colspan="2"><input onkeyup="passwordCheckFunction();" class="form-control" id="userPassword" type="password"  name="userPassword1" maxlength="20" placeholder="비밀번호를 입력하세요."></td>
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>비밀번호 확인</h5>
@@ -100,18 +100,25 @@
 						<td style="width: 110px;"><h5>성별</h5>
 						<td colspan="2">
 							<div class="form-group" style="text-align: center; margin: 0 auto;">
-								<lable class="btn btn-primary active">
-									<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
-								</lable>
-								<lable class="btn btn-primary active">
-									<input type="radio" name="userGender" autocomplete="off" value="여자">여자
-								</lable>
-							
+								<div class="btn-group" data-toggle="buttons">
+										<label class="btn btn-primary active">
+											<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
+										</label>
+										<label class="btn btn-primary active">
+											<input type="radio" name="userGender" autocomplete="off" value="여자">여자
+										</label>
+								</div>
+							</div>
+						</td>	
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>이메일</h5>
 						<td colspan="2"><input class="form-control" id="userEmail" type="email"  name="userEmail" maxlength="20" placeholder="이메일을 입력하세요."></td>
 					</tr>
+					<tr>
+						<td style="text-align: left;" colspan="3"><input class="btn btn-primary pull-right" type="submit" value="등록"></td>
+					</tr>
+					
 				</tbody>
 			
 			</table>

@@ -38,6 +38,7 @@ public class UserService {
 		 SqlSession session = MySqlSessionFactory.getSession();
 		  int n = 0;
 		  try {
+			  UserDAO dao = new UserDAO();
 			  n = dao.register(session, dto);
 			  session.commit();
 		  }finally {

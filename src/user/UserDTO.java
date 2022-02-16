@@ -5,7 +5,7 @@ public class UserDTO {
 	String userID;
 	String userPassword;
 	String userName;
-	String userAge;
+	int userAge;
 	String userGender;
 	String userEmail;
 	String userProfile;

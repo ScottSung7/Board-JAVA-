@@ -15,8 +15,8 @@ import com.service.UserService;
 /**
  * Servlet implementation class MemberUIServlet
  */
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/UserRegisterServlet")
+public class UserRegisterServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -30,7 +30,8 @@ public class RegisterServlet extends HttpServlet {
 		
 		UserDTO dto = 
 				new UserDTO(userID, userPassword, userName, userAge, userGender, userEmail,userProfile);
-		
+		System.out.println("check"+userID+userPassword+userName+userAge+userGender+userEmail+userProfile);
+		System.out.println(dto.getUserID());
 		UserService service = new UserService();
 		int n = service.register(dto);
 		System.out.println(n);			
