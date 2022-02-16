@@ -28,20 +28,7 @@ public class BoardService {
 		  return n;		
 	}
 	
-	public int reply(BoardDTO boardDTO, BoardDTO parent) {
-		 SqlSession session = MySqlSessionFactory.getSession();
-		  int n = 0;
-		  try {
-			  BoardDAO dao = new BoardDAO();
-			  System.out.println("aa");
-			  n = dao.reply(session, boardDTO, parent);
-			  System.out.println(n);
-			  session.commit();
-		  }finally {
-			session.close();
-		}
-		  return n;
-	}
+
 
 	public int replyUpdate(BoardDTO parent) {
 		 SqlSession session = MySqlSessionFactory.getSession();

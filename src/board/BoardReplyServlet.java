@@ -1,6 +1,7 @@
 package board;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ import com.service.BoardService;
 /**
  * Servlet implementation class BoardWriteServlet
  */
-@WebServlet("/BoardWriteServlet")
+@WebServlet("/BoardReplyServlet")
 public class BoardReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -56,7 +57,8 @@ public class BoardReplyServlet extends HttpServlet {
 //			response.sendRedirect("index.jsp");
 //			return;			
 //		}
-		String boardID = request.getParameter("boardID");
+		String userID = (String)session.getAttribute("userID");
+		String boardID = request.getParameter("userID");
 		String boardTitle = request.getParameter("boardTitle");
 		String boardContent = request.getParameter("boardContent");
 		System.out.println(boardTitle+"////"+boardContent);
@@ -71,8 +73,15 @@ public class BoardReplyServlet extends HttpServlet {
 		BoardDTO boardDTO = new BoardDTO(boardTitle, boardContent, boardFile, boardRealFile);
 		BoardService boardService = new BoardService();
 		BoardDTO parent = boardService.getBoard(boardID);
+		BoardDAO dao = new BoardDAO();
 		System.out.println("hi"+ boardDTO.getBoardTitle());
-		int n = boardService.reply(boardDTO, parent);
+		boardService.replyUpdate(parent);
+		try {
+			dao.reply(userID, boardTitle, boardContent, boardFile, boardRealFile, parent);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "성공적으로 게시물이 작성 되었습니다.");
 		response.sendRedirect("boardView.jsp");

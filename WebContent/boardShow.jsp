@@ -112,7 +112,11 @@
 			<tbody>
 		
 				<tr>
-					<td colspan="5"><a href="boardWrite.jsp" class="btn btn-parimary pull-right" type="submit">글쓰기</a>
+					<td colspan="5" style="text-align: right;">
+					<a href="boardUpdate.jsp?boardID<%= board.getBoardID() %>" class="btn btn-primary" type="submit">수정</a>
+					<a href="boardView.jsp" class="btn btn-primary">목록</a>
+					<a href="boardReply.jsp?boardID<%= board.getBoardID() %>" class="btn btn-primary">답변</a>
+					
 				</tr>
 			</tbody>	
 		</table>

@@ -9,4 +9,13 @@
 	<url-pattern>/boardWrite</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>BoardReplyServlet</servlet-name>
+	<servlet-class>board.BoardReplyServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>BoardReplyServlet</servlet-name>
+	<url-pattern>/boardReply</url-pattern>
+</servlet-mapping>
+
 </web-app>
