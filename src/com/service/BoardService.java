@@ -81,6 +81,7 @@ public class BoardService {
 		 try {
 			  BoardDAO dao = new BoardDAO();	  
 			  dto = dao.getBoard(session, boardID);
+		
 		  }finally {
 			session.close();
 		}

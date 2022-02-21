@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "user.UserDTO" %>
+<%@ page import = "user.UserDAO" %>
+<%@ page import = "com.service.UserService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +48,6 @@
 					<ul class="dropdown-menu">
 						<li><a href="login.jsp">로그인</a></li>
 						<li><a href="join.jsp">회원가입</a></li>
-						<li class="active"><a href="update.jsp">회원정보 수정</a></li>
-						<li class="active"><a href="profileUpdate.jsp">프로필 수정</a></li>
 					</ul>	
 					</a>
 				</li>			
@@ -59,6 +60,11 @@
 					<a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">회원관리<span class="caret"></span>
+					<ul class="dropdown-menu">						
+						<li><a href="update.jsp">회원정보 수정</a></li>
+						<li><a href="profileUpdate.jsp">프로필 수정</a></li>
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+					</ul>	
 					</a>
 				</li>			
 			</ul>
@@ -81,6 +87,20 @@
 					</div>
 					<div id="chat" class="panel-collapse collapse in">
 						<div id = "chatlist" class="portlet-body chat-widget" style="overflow-y:auto; width: auto; height: 600px;">
+						<%
+				if(userID == null) {
+				}else{
+					UserDTO user = new UserDTO();
+					UserService service = new UserService();
+					user = service.getUser(userID);
+					String profile = user.getUserProfile();
+				%>
+			
+					MyProfile
+					<img src="http://localhost:8095/User_Chat/upload/<%= profile %>"> 
+					<%}%>
+						
+						
 						</div>
 						<div class="portlet-footer">
 							<div class="row">

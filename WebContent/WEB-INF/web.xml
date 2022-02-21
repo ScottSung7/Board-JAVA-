@@ -8,9 +8,22 @@
 	<servlet-name>UserRegisterServlet</servlet-name>
 	<url-pattern>/userRegister</url-pattern>
 </servlet-mapping>
-
-
-
+<servlet>
+	<servlet-name>UserUpdateServlet</servlet-name>
+	<servlet-class>user.UserUpdateServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>UserUpdateServlet</servlet-name>
+	<url-pattern>/userUpdate</url-pattern>
+</servlet-mapping>
+<servlet>
+	<servlet-name>UserProfileServlet</servlet-name>
+	<servlet-class>user.UserProfileServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>UserProfileServlet</servlet-name>
+	<url-pattern>/userProfile</url-pattern>
+</servlet-mapping>
 <servlet>
 	<servlet-name>BoardWriteServlet</servlet-name>
 	<servlet-class>board.BoardWriteServlet</servlet-class>

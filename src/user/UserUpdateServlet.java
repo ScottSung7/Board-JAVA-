@@ -15,13 +15,20 @@ import com.service.UserService;
 /**
  * Servlet implementation class MemberUIServlet
  */
-@WebServlet("/UserRegisterServlet")
-public class UserRegisterServlet extends HttpServlet {
+@WebServlet("/UserUpdateServlet")
+public class UserUpdateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String userID = request.getParameter("userID");
+		HttpSession session = request.getSession();
+		if(!userID.equals((String)session.getAttribute("userID"))) {
+			session.setAttribute("messageType", "오류메시지");
+			session.setAttribute("messageContent", "접근할수 없습니다");
+			response.sendRedirect("index.jsp");
+			return;		
+		}
 		String userPassword = request.getParameter("userPassword");
 		String userName = request.getParameter("userName");
 		int userAge = Integer.parseInt(request.getParameter("userAge"));
@@ -31,16 +38,16 @@ public class UserRegisterServlet extends HttpServlet {
 				/*request.getParameter("userProfile");*/
 		
 		UserDTO dto = 
-				new UserDTO(userID, userPassword, userName, userAge, userGender, userEmail,userProfile);
-		System.out.println("check"+userID+userPassword+userName+userAge+userGender+userEmail+userProfile);
+				new UserDTO(userPassword, userName, userAge, userGender, userEmail, userID);
+		System.out.println("check"+userID+userPassword+userName+userAge+userGender+userEmail);
 		System.out.println(dto.getUserID());
 		UserService service = new UserService();
-		int n = service.register(dto);
+		int n = service.update(dto);
 		System.out.println(n);			
 		
 		
 		
-		HttpSession session = request.getSession();
+	
 		if(n>0) {request.setAttribute("mesg", "회원가입성공");};
 		RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
 		dis.forward(request, response);

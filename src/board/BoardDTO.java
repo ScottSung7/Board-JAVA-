@@ -31,16 +31,14 @@ public BoardDTO(String userID, int boardID, String boardTitle, String boardConte
 	this.boardSequence = boardSequence;
 	this.boardLevel = boardLevel;
 }
-public BoardDTO(String userID2, String boardTitle2, String boardContent2, String boardFile2, String boardRealFile2) {
-	// TODO Auto-generated constructor stub
-}
-public BoardDTO(String boardTitle2, String boardContent2, String boardFile2, String boardRealFile2) {
-	super();
+public BoardDTO(String userID, String boardTitle2, String boardContent2, String boardFile2, String boardRealFile2) {
+	this.userID = userID;
 	this.boardTitle = boardTitle2;
 	this.boardContent = boardContent2;
 	this.boardFile = boardFile2;
 	this.boardRealFile = boardRealFile2;
 }
+
 public String getUserID() {
 	return userID;
 }

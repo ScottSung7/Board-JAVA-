@@ -58,7 +58,8 @@ public class BoardReplyServlet extends HttpServlet {
 //			return;			
 //		}
 		String userID = (String)session.getAttribute("userID");
-		String boardID = request.getParameter("userID");
+		String boardID = request.getParameter("boardID");
+		System.out.println("boardID___"+boardID);
 		String boardTitle = request.getParameter("boardTitle");
 		String boardContent = request.getParameter("boardContent");
 		System.out.println(boardTitle+"////"+boardContent);
@@ -70,7 +71,7 @@ public class BoardReplyServlet extends HttpServlet {
 //			boardFile = multi.getOriginalFileName("boardFile");
 //			boardRealFile = file.getName();
 //		}
-		BoardDTO boardDTO = new BoardDTO(boardTitle, boardContent, boardFile, boardRealFile);
+		BoardDTO boardDTO = new BoardDTO(userID, boardTitle, boardContent, boardFile, boardRealFile);
 		BoardService boardService = new BoardService();
 		BoardDTO parent = boardService.getBoard(boardID);
 		BoardDAO dao = new BoardDAO();

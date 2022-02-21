@@ -4,26 +4,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BasicMapper">
    <select id= "login" parameterType="hashmap"  resultType="UserDTO">
-     select * from userchat where userid = #{userid} and passwd = #{passwd}  
+     select * from userchat where userid = #{userid} and USERPASSWORD = #{passwd}  
 	</select>
 	
 	<insert id="register" parameterType="UserDTO">
      insert into userchat (userID,userPassword,userName,userAge,userGender,userEmail,userProfile)
-     values( #{userID},#{userPassword},#{userName},#{userAge},#{userGender},#{userEmail}, #{userProfile})
+     values( #{userID},#{userPassword},#{userName},${userAge},#{userGender},#{userEmail}, #{userProfile})
    </insert>
-	<insert id="write" parameterType="BoardDTO">
+   <update id="update" parameterType="UserDTO">   
+     UPDATE userchat set userPassword = #{userPassword}, userName=#{userName}, userAge=${userAge}, 
+     userGender=#{userGender}, userEmail=#{userEmail} where userID = #{userID}
+   </update>
+     <update id="profile" parameterType="hashmap">   
+     UPDATE userchat set userProfile = #{fileName} where userID = #{userID}
+   </update>
+   
+	<insert id="write" parameterType="hashmap">
      insert into board (userID,boardID,boardTitle,boardContent,boardDate,boardHit,boardFile,boadRealFile,boardGroup, BOARDSEQUENCE, boardLevel ) 
-	values ('hi', NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), #{boardTitle}, 
+	values (#{userID}, NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), #{boardTitle}, 
 	#{boardContent}, sysdate, 0, #{boardFile},#{boardRealFile}, NVL((SELECT MAX(BOARDGROUP)+1 FROM BOARD), 0), 0, 0)
    </insert>
    	<insert id="reply" parameterType="BoardDTO">
      insert into board (userID,boardID,boardTitle,boardContent,boardDate,boardHit,boardFile,boadRealFile,boardGroup, BOARDSEQUENCE, boardLevel ) 
-	values ('hi', NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), #{boardTitle}, 
+	values (#{userID}, NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), #{boardTitle}, 
 	#{boardContent}, sysdate, 0, #{boardFile},#{boardRealFile}, #{parent.BOARDGROUP}, #{parent.BOARDSEQUENCE}, #{parent.BOARDLEVEL})
    </insert>
    
      <insert id="replyUpdate" parameterType="BoardDTO">
-    	Update board set boardSequence = boardSequence + 1 where boardGroup = #{BOARDGROUP} and boardSequence > #{BOARDSEQUENCE}
+    	Update board set boardSequence = boardSequence + 1 where boardGroup = #{boardGroup} and boardSequence > #{boardSequence}
    </insert>
    
    
@@ -37,8 +45,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    </select>
    
-   <select id="getBoard" parameterType="string" resultType="BoardDTO">
-    select * from board where boardID = #{boardID}
+   <select id="getBoard" parameterType="int" resultType="BoardDTO">
+    select * from board where boardID = ${boardID}
+
+   </select>
+   
+   <select id="getUser" parameterType="string" resultType="UserDTO">
+    select * from userchat where userID = #{userID}
 
    </select>
    

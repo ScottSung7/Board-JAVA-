@@ -82,7 +82,7 @@
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>비밀번호</h5>
-						<td colspan="2"><input onkeyup="passwordCheckFunction();" class="form-control" id="userPassword" type="password"  name="userPassword1" maxlength="20" placeholder="비밀번호를 입력하세요."></td>
+						<td colspan="2"><input onkeyup="passwordCheckFunction();" class="form-control" id="userPassword" type="password"  name="userPassword" maxlength="20" placeholder="비밀번호를 입력하세요."></td>
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>비밀번호 확인</h5>

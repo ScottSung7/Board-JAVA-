@@ -27,6 +27,8 @@ public class UserLoginServlet extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String userid = (String) request.getParameter("userID");
 		String passwd = (String) request.getParameter("userPassword");
 		System.out.println(userid+"\t"+passwd);
@@ -49,15 +51,17 @@ public class UserLoginServlet extends HttpServlet {
 			if (userid.equals("admin")) {//userid가 관리자 계정인 경우
 				nextPage = "index.jsp";
 				session.setAttribute("login", dto);
+				session.setAttribute("userID", userid);
 			} else {
 				session.setAttribute("login", dto);//dto로 로그인정보 세션저장
+				session.setAttribute("userID", userid);
 				nextPage="index.jsp";
 				
 				System.out.println("login 성공");			
 			}
 			 
 		} else { //dto정보 없을 때 
-			nextPage="index.jsp";
+			nextPage="login.jsp";
 			request.setAttribute("mesg", "로그인 정보가 틀렸습니다.");
 			
 		}

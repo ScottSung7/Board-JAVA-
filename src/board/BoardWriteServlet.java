@@ -56,20 +56,21 @@ public class BoardWriteServlet extends HttpServlet {
 //			response.sendRedirect("index.jsp");
 //			return;			
 //		}
+		String userID = (String)session.getAttribute("userID");
 		String boardTitle = request.getParameter("boardTitle");
 		String boardContent = request.getParameter("boardContent");
 		System.out.println(boardTitle+"////"+boardContent);
 		String boardFile= " ";
 		String boardRealFile = " ";
-		System.out.println(boardTitle+"////"+boardContent+"///"+"");
+		System.out.println("checkcheck"+userID+ boardTitle+"////"+boardContent+"///"+"");
 //		File file = multi.getFile("boardFile");
 //		if(file != null) {
 //			boardFile = multi.getOriginalFileName("boardFile");
 //			boardRealFile = file.getName();
 //		}
-		BoardDTO boardDTO = new BoardDTO(boardTitle, boardContent, boardFile, boardRealFile);
+		BoardDTO boardDTO = new BoardDTO(userID, boardTitle, boardContent, boardFile, boardRealFile);
 		BoardService boardService = new BoardService();
-		System.out.println("hi"+ boardDTO.getBoardTitle());
+		System.out.println("hi"+ boardDTO.getUserID());
 		int n = boardService.write(boardDTO);
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "성공적으로 게시물이 작성 되었습니다.");

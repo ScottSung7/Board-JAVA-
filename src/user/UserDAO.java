@@ -17,4 +17,19 @@ public class UserDAO {
 		return n;
 	}
 
+	public UserDTO getUser(SqlSession session, String userID) {
+		UserDTO dto = session.selectOne("BasicMapper.getUser",userID);
+		return dto;
+	}
+
+	public int update(SqlSession session, UserDTO dto) {
+		int n = session.update("BasicMapper.update", dto);
+		return n;
+	}
+
+	public int profile(SqlSession session, HashMap<String, String> map) {
+		int n = session.update("BasicMapper.profile", map);
+		return n;
+	}
+
 }

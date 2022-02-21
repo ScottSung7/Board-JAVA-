@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "user.UserDTO" %>
+<%@ page import = "user.UserDAO" %>
+<%@ page import = "com.service.UserService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +20,9 @@
 		if(session.getAttribute("userID") !=null){
 			userID = (String)session.getAttribute("userID");
 		}
+		UserDTO user = new UserDTO();
+		UserService service = new UserService();
+		user = service.getUser(userID);
 	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -46,7 +52,7 @@
 						<li><a href="login.jsp">로그인</a></li>
 						<li><a href="join.jsp">회원가입</a></li>
 						<li class><a href="update.jsp">회원정보 수정</a></li>
-						<li class="active"><a href="profileUpdate.jsp">프로필 수정</a></li>
+						<li class="active"><a href="profileUpdate.jsp">프로필 사진 수정</a></li>
 					</ul>	
 					</a>
 				</li>			
@@ -78,9 +84,9 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td style="width: 110px;"><h5>아이디</h5>
-						<td><input class="form-control" type="text" id="userID" name="userID" maxlength="20" placeholder="아이디를 입력하세요."></td>
-						<td style="width: 110px;"><button class="btn btn-primary" oncilick="registerCheckFunction();" type="button">중복체크</button></td>
+							<td style="width: 110px;"><h5>아이디</h5></td>
+						<td><%= user.getUserID() %>
+						<input type="hidden" name="userID" value="<%= user.getUserID() %>"></td>
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>사진 업로드</h5>

@@ -82,7 +82,7 @@
 						<td style="width: 110px;"><h5>아이디</h5>
 						<td><h5><%= userID %></h5>
 						<input type="hidden" name="userID" value="<%= userID %>"></td>
-						<input type="hidden" name="userID" value="<%= boardID %>"></td>
+						<input type="hidden" name="boardID" value="<%= boardID %>"></td>
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>글 제목</h5></td>

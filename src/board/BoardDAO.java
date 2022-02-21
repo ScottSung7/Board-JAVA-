@@ -9,18 +9,23 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import user.UserDTO;
+
 
 public class BoardDAO {
-	String driver="oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe"; 	
-	String userid = "userchat";
-	String passwd = "userchat";
-	
-	Connection con = null;
 	
 	
 	public int reply(String userID, String boardTitle, String boardContent, String boardFile, String boardRealFile,BoardDTO parent) throws SQLException {
+		String driver="oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe"; 	
+		String userid = "userchat";
+		String passwd = "userchat";
+		
+		Connection con = null;
+		
 		try {
+			
+			
 			Class.forName(driver);
 			System.out.println("드라이버 로딩 성공");
 		} catch (ClassNotFoundException e) {
@@ -29,9 +34,9 @@ public class BoardDAO {
 		con = DriverManager.getConnection(url, userid,passwd);
 		PreparedStatement pstmt= null;
 		ResultSet rs= null;
-		String sql="insert into board (userID,boardID,boardTitle,boardContent,boardDate,boardHit,boardFile,boadRealFile,boardGroup, BOARDSEQUENCE, boardLevel )" + 
-				" values (?, NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), ?," + 
-				" ?, sysdate, 0, ?,?, ?, ?,?";
+		String sql="insert into board (userID,boardID,boardTitle,boardContent,boardDate,boardHit,boardFile,boadRealFile,boardGroup, BOARDSEQUENCE, boardLevel)" + 
+				" values (?, NVL((SELECT MAX(boardID)+1 FROM BOARD), 1), ?, ?, sysdate, 0, ?,?, ?, ?,?)";
+		
 		try {
 		pstmt= con.prepareStatement(sql);
 		pstmt.setString(1, userID);
@@ -53,14 +58,15 @@ public class BoardDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}	
+		}
+		System.out.println(sql);
 		return -1;
 	}
 	
 	
 	
 	public int hit(SqlSession session, String boardID) {
-		int n = session.insert("BasicMapper.write", boardID);
+		int n = session.update("BasicMapper.hit", boardID);
 		return n;
 	}
 	
@@ -86,6 +92,7 @@ public class BoardDAO {
 		int n = session.update("BasicMapper.replyUpdate", parent);
 		return n;
 	}
+
 
 
 }
